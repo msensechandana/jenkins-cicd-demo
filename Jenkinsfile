@@ -5,37 +5,53 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Checking out source code...'
+                echo 'Source code checkout completed.'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Building application...'
+                echo 'Build completed successfully.'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
+                echo 'Tests completed successfully.'
             }
         }
 
         stage('Deploy') {
             steps {
-                bat 'if not exist C:\\deploy mkdir C:\\deploy'
-                bat 'copy /Y index.html C:\\deploy\\index.html'
-                echo 'Application deployed successfully!'
+                script {
+                    def deployTime = new Date().format(
+                        'dd MMMM yyyy, hh:mm:ss a',
+                        TimeZone.getTimeZone('Asia/Kolkata')
+                    )
+
+                    echo "========================================"
+                    echo "       DEPLOYMENT SUCCESSFUL"
+                    echo "========================================"
+                    echo "Application : Jenkins CI/CD Demo"
+                    echo "Environment : Production"
+                    echo "Date & Time : ${deployTime}"
+                    echo "Status      : SUCCESS"
+                    echo "========================================"
+
+                    bat 'if not exist C:\\deploy mkdir C:\\deploy'
+                    bat 'copy /Y index.html C:\\deploy\\index.html'
+                }
             }
         }
     }
 
     post {
         success {
-            echo 'CI/CD Pipeline completed successfully!'
+            echo 'CI/CD PIPELINE COMPLETED SUCCESSFULLY'
         }
+
         failure {
-            echo 'CI/CD Pipeline failed!'
+            echo 'CI/CD PIPELINE FAILED'
         }
     }
 }
