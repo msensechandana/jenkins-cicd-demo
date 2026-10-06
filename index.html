@@ -1,10 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Jenkins CI/CD Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jenkins CI/CD Deployment</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+            color: #ffffff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+        }
+
+        .icon {
+            font-size: 65px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #38ef7d;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 17px;
+            color: #cbd5e1;
+            margin-bottom: 35px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 30px;
+            background: #166534;
+            color: #bbf7d0;
+            font-weight: 700;
+            margin-bottom: 35px;
+        }
+
+        .details {
+            text-align: left;
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .value {
+            color: #f8fafc;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #64748b;
+            font-size: 13px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Deployed Successfully!</h1>
-    <p>Application deployed using Jenkins CI/CD.</p>
+
+    <div class="container">
+
+        <div class="icon">✓</div>
+
+        <h1>Deployment Successful</h1>
+
+        <p class="subtitle">
+            Jenkins CI/CD Pipeline completed successfully
+        </p>
+
+        <div class="status">
+            ● DEPLOYED
+        </div>
+
+        <div class="details">
+
+            <div class="row">
+                <span class="label">Application</span>
+                <span class="value">Jenkins CI/CD Demo</span>
+            </div>
+
+            <div class="row">
+                <span class="label">Environment</span>
+                <span class="value">Production</span>
+            </div>
+
+            <div class="row">
+                <span class="label">Date</span>
+                <span class="value" id="date"></span>
+            </div>
+
+            <div class="row">
+                <span class="label">Time</span>
+                <span class="value" id="time"></span>
+            </div>
+
+            <div class="row">
+                <span class="label">Deployment Status</span>
+                <span class="value">SUCCESS</span>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            Automated deployment powered by Jenkins
+        </div>
+
+    </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+
+            document.getElementById("date").textContent =
+                now.toLocaleDateString("en-IN", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+
+            document.getElementById("time").textContent =
+                now.toLocaleTimeString("en-IN", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: true
+                });
+        }
+
+        updateDateTime();
+    </script>
+
 </body>
 </html>
